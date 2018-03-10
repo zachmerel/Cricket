@@ -14,9 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     int scorePlayer1 = 0;
     int scorePlayer2 = 0;
-    String playerOneClose20Phase1 = "";
-    String playerOneClose20Phase2 = "";
-    String playerOneClose20Phase3 = "";
+    String playerOneClose20 = " ";
 
     TextView text, text2, text3,text4,text5,text6,text7,text8,text9,
             text10,text11,text12,text13,text14,text15,text16,text17,
@@ -173,18 +171,19 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Closes out number 20 Player 1.
      */
-    public void twentyCloseOutPlayer1Phase1(View v) {
-        playerOneClose20Phase1 = playerOneClose20Phase1 + "\\";
-        display20closePlayer1Phase1(playerOneClose20Phase1);
+    public void twentyCloseOutPlayer1(View v) {
+        if (playerOneClose20.equals(" ")) {
+            playerOneClose20 = "\\";
+            display20ClosePlayer1(playerOneClose20);
+        }else if (playerOneClose20.equals("\\")){
+            playerOneClose20 = "X";
+            display20ClosePlayer1(playerOneClose20);
+        } else if (playerOneClose20.equals("X")) {
+            playerOneClose20 = "(X)";
+            display20ClosePlayer1(playerOneClose20);
+        }
     }
-    public void twentyCloseOutPlayer1Phase2(View v) {
-        playerOneClose20Phase2 = playerOneClose20Phase2 + "X";
-        display20closePlayer1Phase2(playerOneClose20Phase2);
-    }
-    public void twentyCloseOutPlayer1Phase3(View v) {
-        playerOneClose20Phase3 = playerOneClose20Phase3 + "(X)";
-        display20closePlayer1Phase3(playerOneClose20Phase3);
-    }
+
 
 
     /**
@@ -292,33 +291,27 @@ public class MainActivity extends AppCompatActivity {
      * Displays the given score for Player 2.
      */
     public void displayForPlayer2(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.player_2_score);
+        TextView scoreView =  findViewById(R.id.player_2_score);
         scoreView.setText(String.valueOf(score));
     }
     /**
      * Displays the close for 20 for Player 1.
      */
-    public void display20closePlayer1Phase1(String close) {
-        TextView playerOneTwentyClosePhase1 = (TextView) findViewById(R.id.player_one_20_close);
-        playerOneTwentyClosePhase1.setText(String.valueOf(close));
+    public void display20ClosePlayer1(String close) {
+        TextView playerOneTwentyClose = findViewById(R.id.player_one_20_close);
+        playerOneTwentyClose.setText(String.valueOf(close));
     }
-    public void display20closePlayer1Phase2(String close) {
-        TextView playerOneTwentyClosePhase2 = (TextView) findViewById(R.id.player_one_20_close);
-        playerOneTwentyClosePhase2.setText(String.valueOf(close));
-    }
-    public void display20closePlayer1Phase3(String close) {
-        TextView playerOneTwentyClosePhase3 = (TextView) findViewById(R.id.player_one_20_close);
-        playerOneTwentyClosePhase3.setText(String.valueOf(close));
-    }
+
     /**
      * Reset the score.
      */
     public void resetScore(View v) {
         scorePlayer1 = 0;
         scorePlayer2 = 0;
-        playerOneClose20Phase1 = "";
+        playerOneClose20 = " ";
         displayForPlayer1(scorePlayer1);
         displayForPlayer2(scorePlayer2);
-        display20closePlayer1Phase1(playerOneClose20Phase1);
+        display20ClosePlayer1(playerOneClose20);
+
     }
 }
